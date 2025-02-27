@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <title>${import.meta.env.VITE_APP_TITLE}</title> -->
+    
+    <title><%= VITE_APP_TITLE %></title> 
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+
+    <script src="http://127.0.0.1:8000/myScript.js"></script>
+    <script>
+        // document.cookie['abc'] ='1234'
+        console.log(document.cookies,document.cookie,window.cookie, window.cookies,"===cookecie")
+        MyLibrary.createNewSession("12345", document.cookie);
+
+        console.log(MyLibrary.getSession(),"---->>");
+        // document.cookie = `${'namm'}=${'terna'}; path=/; Secure; SameSite=Lax`;
+        let sessionCookies = MyLibrary.getSession().cookies;
+        Object.entries(sessionCookies).forEach(([key, value]) => {
+            document.cookie = `${key}=${value}; path=/; Secure; SameSite=Lax`;
+        });
+
+        // document.cookies = MyLibrary.getSession().cookies
+    </script>
+  </body>
+</html>
